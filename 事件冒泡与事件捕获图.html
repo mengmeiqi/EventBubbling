@@ -11,49 +11,91 @@
     <div>
         <p>
             事件冒泡：
+            <br/>
             （1）从事件源开始，逐层往外传播
+            <br/>
             （2）无论是标准浏览器，还是非标准浏览器都有事件冒泡
+            <br/>
             （3）大多数事件都有事件冒泡
+            <br/>
             onload，onfocus，onblur不冒泡
+            <br/>
             绑定事件的其他方法：
+            <br/>
             （a）标准浏览器：
+            <br/>
             oDiv1.addEventListener("click",function(){},false);
+            <br/>
             Obj.addEventListener(type,function(){
-
+            <br/>
             },false/true);
+            <br/>
             有三个参数，第一个是绑定的事件，没有on，
+            <br/>
             第二个是事件函数，第三个参数是布尔值，默认值是false；
+            <br/>
             布尔值为false时是事件冒泡，布尔值为true时是事件捕获；
+            <br/>
             事件冒泡和事件捕获是两个相反的过程；事件发生的过程是先捕获后冒泡；
+            <br/>
             this指向是事件源：
+            <br/>
             oDiv1.addEventListener("click", function(e){
+            <br/>
             alert("div1");
+            <br/>
             console.log(this);//this指的是oDiv1
+            <br/>
             }
+            <br/>
             阻止事件冒泡：
+            <br/>
             e.stopPropagation();
+            <br/>
             （b）非标准浏览器：
+            <br/>
             obj.attachEvent(on+type,function(){
+            <br/>
             });
+            <br/>
             非标准浏览器只支持事件冒泡，不支持事件捕获；
+            <br/>
             this指向是window，可以改变：
+            <br/>
             oDiv1.attachEvent("onclick", function(){
+            <br/>
             alert(1);
+            <br/>
             window.event.cancelBubble = true;
+            <br/>
             alert(this === window);
+            <br/>
             });
+            <br/>
             阻止事件冒泡：
+            <br/>
             window.event.cancelBubble = true;
+            <br/>
             封装函数：
+            <br/>
             function addEvent(elem, type, handler){
+            <br/>
             if(elem.addEventListener){//能力检测
+            <br/>
             elem.addEventListener(type, handler);
+            <br/>
             }else if(elem.attachEvent){
+            <br/>
             elem.attachEvent("on" + type, handler);
+            <br/>
             }else{
+            <br/>
             elem["on" + type] = handler;
+            <br/>
             }
+            <br/>
             }
+            <br/>
         </p>
     </div>
 </body>
