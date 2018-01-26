@@ -44,3 +44,21 @@
 	        elem["on" + type] = handler;
 	    }
 	}
+
+	事件冒泡能解决什么问题？
+    事件委托/事件代理：
+    利用事件冒泡把子元素的事件同意委托给父元素绑定
+    （1）有很多子元素绑定一个事件，利用事件冒泡，
+    10个Li，点击哪个就输出哪个的内容
+    	var oNav = document.getElementById("nav");
+    	/*var aLi = oNav.getElementsByTagName("li");
+    	for(var i=0; i<aLi.length; i++){
+    	    aLi[i].onclick = function(){
+    	        console.log(this.innerHTML);
+    	    };
+    	}*/
+    	oNav.onclick = function(e){
+    	    var target = e.target || window.event.srcElement;
+    	    console.log(target.innerHTML);
+    	};
+    （2）无缝滚动
